@@ -1,4 +1,0 @@
-[[hooks]]
-stage = "post_build"
-command = "sh"
-command_arguments = ["-c", "railwind -c tailwind.config.rs -o ./dist/.stage/index.css"]
