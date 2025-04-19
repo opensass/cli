@@ -1,69 +1,117 @@
-# 📦 Next RS
+<div align="center">
 
-[![Crates.io](https://img.shields.io/crates/v/next-rs)](https://crates.io/crates/next-rs)
-[![Crates.io Downloads](https://img.shields.io/crates/d/next-rs)](https://crates.io/crates/next-rs)
-![Crates.io License](https://img.shields.io/crates/l/next-rs)
-![Rust](https://img.shields.io/badge/rust-stable-orange)
+# 🧩 OpenSASS
 
-> [!WARNING] 
-> The development of **Next RS** is currently on hold as our team shifts focus to [**Dioxus**](https://github.com/DioxusLabs/dioxus). For now, we highly recommend using **Dioxus**, as it will likely include many of the features originally planned for Next RS.
->
-> However, this isn't goodbye forever! We may return to Next RS in the future if the demand and direction align. Until then, we appreciate your support and understanding.
->
-> With love,
-> The Team ❤️
+[![Crates.io](https://img.shields.io/crates/v/opensass.svg)](https://crates.io/crates/opensass)
+[![docs](https://docs.rs/opensass/badge.svg)](https://docs.rs/opensass/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+| 🐧 Linux `(Recommended)` |        🪟 Windows        |
+| :----------------------: | :----------------------: |
+| `cargo install opensass` | `cargo install opensass` |
+| [Download Executable File](https://github.com/opensass/cli/releases/download/v0.0.1/os) | [Download `.exe` File](https://github.com/opensass/cli/releases/download/v0.0.1/os.exe) |
+|         `os -h`          |         `os -h`          |
 
-## 📜 Introduction
+</div>
 
-Next RS is a UI framework, written 100% in Rust btw, that simplifies building user interfaces. It provides a collection of optional features, each designed to enhance different aspects of UI development. Explore the documentation to learn about the features and how to integrate them into your Next RS projects.
+> 🧩 **OpenSASS**: A CLI tool for downloading reusable OpenSASS components from crates.io and integrating them into your WASM frontend projects.
 
-## 🚀 Features
+## 📖 Table of Contents
 
-Next RS offers the following features:
+- [Installation](#-installation)
+- [What is OpenSASS?](#-what-is-opensass)
+- [Features](#-features)
+- [Usage](#-usage)
+- [Examples](#-examples)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-| Feature  Flag     | Crate Dependency         | GitHub Repository     | Description |
-|----------------|-------------------|----------|---------------|
-| `navbar`       |   `yew-navbar`           | [![GitHub](https://img.shields.io/github/stars/next-rs/yew-navbar)](https://github.com/next-rs/yew-navbar)           | Create a responsive top-level navigation bar.             |
-| `sidebar`      |   `yew-sidebar`          | [![GitHub](https://img.shields.io/github/stars/next-rs/yew-sidebar)](https://github.com/next-rs/yew-sidebar)        | Build a customizable sidebar navigation component.     |
-| `accordion`    | `yew-accordion`          | [![GitHub](https://img.shields.io/github/stars/next-rs/yew-accordion)](https://github.com/next-rs/yew-accordion)     | Build interactive accordion-style components.              |
-| `alert`        | `yew-alert`              | [![GitHub](https://img.shields.io/github/stars/next-rs/yew-alert)](https://github.com/next-rs/yew-alert)           | Display alerts with customizable styling and properties.   |
-| `i18n`         | `yew-i18n`               | [![GitHub](https://img.shields.io/github/stars/next-rs/yew-i18n)](https://github.com/next-rs/yew-i18n)             | Implement internationalization for multi-language support.  |
-| `input`        | `input_yew`              | [![GitHub](https://img.shields.io/github/stars/next-rs/input-yew)](https://github.com/next-rs/input-yew)        | Utilize custom input components for enhanced form handling. |
-| `css`          | `stylist`                | [![GitHub](https://img.shields.io/github/stars/futursolo/stylist-rs)](https://github.com/futursolo/stylist-rs)           | Apply styling to your components using the Stylist crate integration.|
+## 🚀 Installation
 
-To use a specific feature, add the corresponding feature flag in your `Cargo.toml` file.
+To install the CLI:
 
-## ⚙️ Installation
-
-Integrating Next RS into your project is straightforward. Add it as a dependency in your `Cargo.toml` file:
-
-```toml
-[dependencies]
-next-rs = "0.0.13"
+```sh
+cargo install opensass
 ```
 
-Additionally, Next RS provides a flexible configuration through feature flags. Modify the `Cargo.toml` file to enable or disable specific features.
+Or build from source:
 
-```toml
-[dependencies]
-next-rs = { version = "0.0.13", features = ["navbar", "sidebar", "accordion", "alert", "css"] }
+```sh
+git clone https://github.com/opensass/cli.git
+cd cli
+cargo build --release
 ```
 
-## 📙 Examples
+## ❓ What is OpenSASS?
 
-If you want to explore different Next RS components and features, you can check out the [examples folder](examples) for more information.
+**OpenSASS** is a modular CLI tool that enables you to:
 
-| Example | URL |
-| --- | --- |
-| Link And Head Components | [![Netlify Status](https://api.netlify.com/api/v1/badges/0f5cbba1-4179-45c7-91e2-5540f3539a12/deploy-status)](https://next-rs-link.netlify.app) |
-| Image Component | [![Netlify Status](https://api.netlify.com/api/v1/badges/0f5cbba1-4179-45c7-91e2-5540f3539a12/deploy-status)](https://next-rs-image.netlify.app/) |
+- Download reusable Rust/WASM components published to `crates.io`.
+- Automatically resolve and import component-specific dependencies and features.
+- Copy relevant source files directly into your `src/` directory.
+- Seamlessly integrate with frontend frameworks like `Yew`, `Leptos`, and `Dioxus`.
 
+It simplifies the process of reusing frontend Rust code across projects.
 
-## 🤝 Contribution
+## ✨ Features
 
-We welcome contributions from the community to enhance Next RS. Feel free to open issues, submit pull requests, or provide feedback. Let's collaborate to make UI development in Rust even more efficient and enjoyable!
+- 🧩 Add OpenSASS component-based crates with a single command.
+- ⚙ Automatically updates `Cargo.toml` with proper features.
+- 🔁 Copies only the `src/` files related to the specified feature.
 
-## 📜 License
+## 💡 Usage
 
-Next RS is licensed under the `MIT` License, allowing you to use, modify, and distribute it freely. Refer to the [`LICENSE`](LICENSE) file for more details.
+### Add an OpenSASS component to your project
+
+```sh
+os add i18nrs yew
+```
+
+This will:
+
+- Download the `i18nrs` crate.
+- Extract files only related to the `yew` feature.
+- Copy `src/` files into your project.
+- Update your `Cargo.toml` dependencies and feature flags.
+
+## 🧪 Examples
+
+### Using with Yew
+
+```sh
+os add radiors yew
+```
+
+### Using with Leptos
+
+```sh
+os add radiors lep
+```
+
+### Using with Dioxus
+
+```sh
+os add radiors dio
+```
+
+## 📦 Roadmap
+
+- [x] Add components by feature.
+- [x] Auto-update `lib.rs` & `Cargo.toml`.
+- [ ] Initialize custom WASM templates.
+- [ ] TUI support.
+- [ ] VS Code extension?
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+
+1. Fork this repo
+1. Create your branch (`git checkout -b feature/my-feature`)
+1. Commit your changes (`git commit -am 'Add new feature'`)
+1. Push and open a PR
+
+## 📄 License
+
+Licensed under the [MIT License](LICENSE).

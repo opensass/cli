@@ -1,53 +1,42 @@
 [package]
-name = "next-rs"
-version = "0.0.13"
-description = "📈 UI in Rust made simple."
-license = "MIT"
-keywords = ["next", "yew", "rust", "next-rs"]
-repository = "https://github.com/next-rs/next-rs"
-documentation = "https://docs.rs/next-rs"
-homepage = "https://next-rs.dev"
+name = "opensass"
+version = "0.0.1"
+edition = "2024"
+description = """
+🧩 A CLI to interact with the OpenSASS ecosystem.
+"""
 authors = ["Mahmoud Harmouch <oss@wiseai.dev>"]
-edition = "2021"
-exclude = ["/examples"]
-categories = ["web-programming", "no-std"]
+license = "MIT"
+documentation = "https://docs.rs/opensass"
+repository = "https://github.com/opensass/cli"
+readme = "README.md"
+categories = ["wasm", "command-line-utilities", "development-tools::build-utils"]
+keywords = ["wasm", "rust", "cli", "components", "frontend"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "os"
+path = "src/main.rs"
 
 [dependencies]
-gloo-net = { version = "0.5.0", features = ["http"] }
-serde_json = { version = "1.0.113", default-features = false }
-wasm-bindgen-futures = "0.4.41"
-web-sys = { version = "0.3.68", features = ["Request", "Window", "ScrollToOptions", "ScrollBehavior", "DomRect", "Element", "EventListener", "Node", "IntersectionObserver", "IntersectionObserverInit", "IntersectionObserverEntry", "HtmlImageElement"] }
-yew = { version = "0.21.0", default-features = false, optional = true }
-yew-i18n = { path = "./yew-i18n", version = "0.1.2", default-features = false, optional = true }
-yew-navbar = { path = "./yew-navbar", version = "0.1.1", default-features = false, optional = true }
-yew-sidebar = { path = "./yew-sidebar", version = "0.1.4", default-features = false, optional = true }
-yew-accordion  = { path = "./yew-accordion", version = "0.1.1", default-features = false, optional = true }
-yew-alert = { path = "./yew-alert", version = "0.1.0", default-features = false, optional = true }
-input_yew = {  path = "./input-yew", version = "0.1.10", default-features = false, optional = true }
-yew-router  = { version = "0.18.0", default-features = false, optional = true }
-stylist  = { version = "0.13.0", features = ["yew_integration"], optional = true }
+anyhow = "1.0.98"
+clap = { version = "4.5.36", features = ["derive"] }
+crates_io_api = "0.11.0"
+flate2 = "1.1.1"
+indicatif = "0.17.11"
+reqwest = { version = "0.12.15", features = ["blocking", "rustls-tls"] }
+tar = "0.4.44"
+tempfile = "3.19.1"
+tokio = { version = "1.44.2", features = ["full"] }
+toml_edit = "0.22.24"
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+walkdir = "2.5.0"
 
 [features]
-default = ["yew-router", "yew/csr"]
-# csr = ["yew/csr"]
-navbar = ["yew-navbar"]
-sidebar = ["yew-sidebar"]
-alert = ["yew-alert"]
-i18n = ["yew-i18n"]
-input = ["input_yew"]
-accordion = ["yew-accordion"]
-css = ["stylist"]
-
-[package.metadata.docs.rs]
-all-features = true
+default = []
 
 [profile.release]
 codegen-units = 1
 opt-level = "z"
 lto = "thin"
 strip = "symbols"
-
-[badges]
-maintenance = { status = "actively-developed" }
