@@ -19,7 +19,6 @@
 ## 📖 Table of Contents
 
 - [Installation](#-installation)
-- [What is OpenSASS?](#-what-is-opensass)
 - [Features](#-features)
 - [Usage](#-usage)
 - [Components](#-components)
