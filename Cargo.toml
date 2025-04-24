@@ -12,6 +12,7 @@ repository = "https://github.com/opensass/cli"
 readme = "README.md"
 categories = ["wasm", "command-line-utilities", "development-tools::build-utils"]
 keywords = ["wasm", "rust", "cli", "components", "frontend"]
+exclude = ["/assets"]
 
 [[bin]]
 name = "os"
@@ -36,7 +37,17 @@ walkdir = "2.5.0"
 default = []
 
 [profile.release]
-codegen-units = 1
 opt-level = "z"
+debug = false
 lto = "thin"
+codegen-units = 1
+panic = "abort"
 strip = "symbols"
+incremental = false
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
