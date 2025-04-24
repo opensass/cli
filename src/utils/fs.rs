@@ -11,12 +11,25 @@ pub fn copy_relevant_files(
     feature: &str,
 ) -> anyhow::Result<Vec<String>> {
     let mut copied = Vec::new();
+    let feature_file = match feature {
+        "dio" => "dioxus",
+        "lep" => "leptos",
+        _ => feature,
+    };
 
     for entry in WalkDir::new(src_dir).into_iter().flatten() {
         let path = entry.path();
         if path.is_file() {
             let file_name = path.file_name().unwrap().to_string_lossy();
-            if ["common.rs", "config.rs", &format!("{feature}.rs")].contains(&file_name.as_ref()) {
+            if [
+                "common.rs",
+                "config.rs",
+                &format!("{feature_file}.rs"),
+                "countries.rs",
+                "chart.rs",
+            ]
+            .contains(&file_name.as_ref())
+            {
                 let dest_path = dest_dir.join(file_name.to_string());
                 fs::copy(path, &dest_path)?;
                 copied.push(file_name.to_string());
