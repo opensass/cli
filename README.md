@@ -22,8 +22,8 @@
 - [What is OpenSASS?](#-what-is-opensass)
 - [Features](#-features)
 - [Usage](#-usage)
-- [Examples](#-examples)
-- [Roadmap](#-roadmap)
+- [Components](#-components)
+- [Benchmark](#-benchmark)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -42,17 +42,6 @@ git clone https://github.com/opensass/cli.git
 cd cli
 cargo build --release
 ```
-
-## ❓ What is OpenSASS?
-
-**OpenSASS** is a modular CLI tool that enables you to:
-
-- Download reusable Rust/WASM components published to `crates.io`.
-- Automatically resolve and import component-specific dependencies and features.
-- Copy relevant source files directly into your `src/` directory.
-- Seamlessly integrate with frontend frameworks like `Yew`, `Leptos`, and `Dioxus`.
-
-It simplifies the process of reusing frontend Rust code across projects.
 
 ## ✨ Features
 
@@ -75,43 +64,45 @@ This will:
 - Copy `src/` files into your project.
 - Update your `Cargo.toml` dependencies and feature flags.
 
-## 🧪 Examples
+## 🧃 Components
 
-### Using with Yew
+Open SASS offers the following components:
+
+| 🧩 Component | 📦 GitHub Repository | 📝 Description |
+|------------------|--------------------------|---------------------|
+| `accordion` | [![GitHub](https://img.shields.io/github/stars/opensass/accordion-rs)](https://github.com/opensass/accordion-rs) | ↕️ A highly customizable accordion component for WASM frameworks. |
+| `alert`     | [![GitHub](https://img.shields.io/github/stars/opensass/alert-rs)](https://github.com/opensass/alert-rs)       | ⚠️ A highly customizable alert component for WASM frameworks. |
+| `eld`       | [![GitHub](https://img.shields.io/github/stars/opensass/eld)](https://github.com/opensass/eld)                 | 🚛 ELD Toolkit for WASM frameworks. |
+| `i18n`      | [![GitHub](https://img.shields.io/github/stars/opensass/i18n-rs)](https://github.com/opensass/i18n-rs)         | 🌐 Internationalization (i18n) component for WASM frameworks. |
+| `input`     | [![GitHub](https://img.shields.io/github/stars/opensass/input-rs)](https://github.com/opensass/input-rs)       | 🔤 A highly customizable input component for WASM frameworks. |
+| `radio`     | [![GitHub](https://img.shields.io/github/stars/opensass/radio-rs)](https://github.com/opensass/radio-rs)       | 🎛️ A highly customizable radio buttons component for WASM frameworks. |
+| `scroll`    | [![GitHub](https://img.shields.io/github/stars/opensass/scroll-rs)](https://github.com/opensass/scroll-rs)     | 🖱️ A highly customizable scroll-to-anywhere component for WASM frameworks. |
+| `select`    | [![GitHub](https://img.shields.io/github/stars/opensass/select-rs)](https://github.com/opensass/select-rs)     | 🔽 A highly customizable select group component for WASM frameworks. |
+
+And much more coming over time...
+
+## ⚡ Benchmark
 
 ```sh
-os add radiors yew
+❯ time npx shadcn@latest add accordion
+5.93s user 2.22s system 93% cpu
 ```
-
-### Using with Leptos
 
 ```sh
-os add radiors lep
+❯ time os add accordion-rs yew
+0.17s user 0.02s system 6% cpu
 ```
 
-### Using with Dioxus
+Open SASS CLI is **~50× faster** and uses **~15× less CPU** than `shadcn`. More optimizations on the way 🚀.
 
-```sh
-os add radiors dio
-```
+## 🤝 Contributions
 
-## 📦 Roadmap
+Contributions are welcome! Whether it's bug fixes, feature requests, or examples, we would love your help to make Open SASS better.
 
-- [x] Add components by feature.
-- [x] Auto-update `lib.rs` & `Cargo.toml`.
-- [ ] Initialize custom WASM templates.
-- [ ] TUI support.
-- [ ] VS Code extension?
+1. Fork the repository.
+1. Create a new branch for your feature/bugfix.
+1. Submit a pull request for review.
 
-## 🤝 Contributing
+## 📜 License
 
-Contributions are welcome! Please:
-
-1. Fork this repo
-1. Create your branch (`git checkout -b feature/my-feature`)
-1. Commit your changes (`git commit -am 'Add new feature'`)
-1. Push and open a PR
-
-## 📄 License
-
-Licensed under the [MIT License](LICENSE).
+Open SASS is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this library in your projects.
