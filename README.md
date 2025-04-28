@@ -17,7 +17,7 @@
 | 🐧 Linux `(Recommended)` |        🪟 Windows        |
 | :----------------------: | :----------------------: |
 | `cargo install opensass` | `cargo install opensass` |
-| [Download Executable File](https://github.com/opensass/cli/releases/download/v0.0.1/os) | [Download `.exe` File](https://github.com/opensass/cli/releases/download/v0.0.1/os.exe) |
+| [Download Executable File](https://github.com/opensass/cli/releases/download/v0.0.5/os) | [Download `.exe` File](https://github.com/opensass/cli/releases/download/v0.0.5/os.exe) |
 |         `os -h`          |         `os -h`          |
 
 </div>
