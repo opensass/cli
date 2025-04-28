@@ -51,13 +51,15 @@ pub fn run_add(crate_name: &str, feature: &str) -> anyhow::Result<()> {
     let source_path = extracted_path.join("src");
     let current_project_src = Path::new("src");
 
+    let new_crate_name = crate_name.replace('-', "_");
+
     spinner.set_message("📁 Copying relevant source files...");
-    let _ = copy_relevant_files(&source_path, current_project_src, crate_name, feature)?;
+    let _ = copy_relevant_files(&source_path, current_project_src, &new_crate_name, feature)?;
 
     spinner.set_message("🧩 Updating lib.rs...");
     update_pub_file(
         current_project_src.join("lib.rs"),
-        &[crate_name.to_string()],
+        &[new_crate_name.to_string()],
     )?;
 
     spinner.set_message("🛠️ Updating Cargo.toml...");
