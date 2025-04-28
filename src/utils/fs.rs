@@ -1,3 +1,4 @@
+use anyhow::{Context, Result};
 use std::{
     fs,
     path::{Path, PathBuf},
@@ -8,42 +9,59 @@ use walkdir::WalkDir;
 pub fn copy_relevant_files(
     src_dir: &Path,
     dest_dir: &Path,
+    crate_name: &str,
     feature: &str,
-) -> anyhow::Result<Vec<String>> {
+) -> Result<Vec<String>> {
     let mut copied = Vec::new();
+
     let feature_file = match feature {
         "dio" => "dioxus",
         "lep" => "leptos",
         _ => feature,
     };
 
+    let crate_dir = dest_dir.join(crate_name);
+    fs::create_dir_all(&crate_dir)
+        .with_context(|| format!("Failed to create crate directory at {:?}", crate_dir))?;
+
     for entry in WalkDir::new(src_dir).into_iter().flatten() {
         let path = entry.path();
         if path.is_file() {
             let file_name = path.file_name().unwrap().to_string_lossy();
-            if [
+
+            let should_copy = [
                 "common.rs",
                 "config.rs",
-                &format!("{feature_file}.rs"),
                 "countries.rs",
                 "chart.rs",
+                &format!("{feature_file}.rs"),
             ]
-            .contains(&file_name.as_ref())
-            {
-                let dest_path = dest_dir.join(file_name.to_string());
-                fs::copy(path, &dest_path)?;
-                copied.push(file_name.to_string());
+            .contains(&file_name.as_ref());
+
+            if should_copy {
+                let dest_file_name = if file_name == format!("{feature_file}.rs") {
+                    format!("{crate_name}.rs")
+                } else {
+                    file_name.to_string()
+                };
+
+                let dest_path = crate_dir.join(&dest_file_name);
+
+                fs::copy(path, &dest_path)
+                    .with_context(|| format!("Failed to copy {:?} to {:?}", path, dest_path))?;
+
+                copied.push(dest_file_name.trim_end_matches(".rs").to_string());
             }
         }
     }
 
-    Ok(copied
-        .into_iter()
-        .map(|f| f.trim_end_matches(".rs").to_string())
-        .collect())
+    let crate_file = dest_dir.join(format!("{crate_name}.rs"));
+    update_pub_file(crate_file, &copied)?;
+
+    Ok(copied)
 }
 
-pub fn update_lib_rs(lib_path: PathBuf, modules: &[String]) -> anyhow::Result<()> {
+pub fn update_pub_file(lib_path: PathBuf, modules: &[String]) -> Result<()> {
     let mut content = if lib_path.exists() {
         fs::read_to_string(&lib_path)?
     } else {
@@ -61,7 +79,7 @@ pub fn update_lib_rs(lib_path: PathBuf, modules: &[String]) -> anyhow::Result<()
     Ok(())
 }
 
-pub fn update_cargo_toml(from: PathBuf, to: &Path, _feature: &str) -> anyhow::Result<()> {
+pub fn update_cargo_toml(from: PathBuf, to: &Path, _feature: &str) -> Result<()> {
     let source_content = fs::read_to_string(&from)?;
     let from_doc: DocumentMut = source_content.parse()?;
 
