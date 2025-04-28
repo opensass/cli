@@ -60,7 +60,7 @@ cargo build --release
 
 <video src="https://github.com/user-attachments/assets/add61376-cdf6-4a46-9d3b-067bc4d0c4bd"></video>
 
-### Add an OpenSASS component to your project
+### Yew Usage
 
 ```sh
 os add i18nrs yew
@@ -70,8 +70,20 @@ This will:
 
 - Download the `i18nrs` crate.
 - Extract files only related to the `yew` feature.
-- Copy `src/` files into your project.
-- Update your `Cargo.toml` dependencies and feature flags.
+- Copy `src/` files into your project under a new directory `crate_name`, in this case `i18nrs`.
+- Update your `Cargo.toml` dependencies and `lib.rs` file.
+
+### Dioxus Usage
+
+```sh
+os add i18nrs dio
+```
+
+### Leptos Usage
+
+```sh
+os add i18nrs lep
+```
 
 ## 🧃 Components
 
@@ -79,14 +91,15 @@ Open SASS offers the following components:
 
 | 🧩 Component | 📦 GitHub Repository | 📝 Description |
 |------------------|--------------------------|---------------------|
-| `accordion` | [![GitHub](https://img.shields.io/github/stars/opensass/accordion-rs)](https://github.com/opensass/accordion-rs) | ↕️ A highly customizable accordion component for WASM frameworks. |
-| `alert`     | [![GitHub](https://img.shields.io/github/stars/opensass/alert-rs)](https://github.com/opensass/alert-rs)       | ⚠️ A highly customizable alert component for WASM frameworks. |
+| `accordion-rs` | [![GitHub](https://img.shields.io/github/stars/opensass/accordion-rs)](https://github.com/opensass/accordion-rs) | ↕️ A highly customizable accordion component for WASM frameworks. |
+| `alert-rs`     | [![GitHub](https://img.shields.io/github/stars/opensass/alert-rs)](https://github.com/opensass/alert-rs)       | ⚠️ A highly customizable alert component for WASM frameworks. |
 | `eld`       | [![GitHub](https://img.shields.io/github/stars/opensass/eld)](https://github.com/opensass/eld)                 | 🚛 ELD Toolkit for WASM frameworks. |
-| `i18n`      | [![GitHub](https://img.shields.io/github/stars/opensass/i18n-rs)](https://github.com/opensass/i18n-rs)         | 🌐 Internationalization (i18n) component for WASM frameworks. |
-| `input`     | [![GitHub](https://img.shields.io/github/stars/opensass/input-rs)](https://github.com/opensass/input-rs)       | 🔤 A highly customizable input component for WASM frameworks. |
-| `radio`     | [![GitHub](https://img.shields.io/github/stars/opensass/radio-rs)](https://github.com/opensass/radio-rs)       | 🎛️ A highly customizable radio buttons component for WASM frameworks. |
-| `scroll`    | [![GitHub](https://img.shields.io/github/stars/opensass/scroll-rs)](https://github.com/opensass/scroll-rs)     | 🖱️ A highly customizable scroll-to-anywhere component for WASM frameworks. |
-| `select`    | [![GitHub](https://img.shields.io/github/stars/opensass/select-rs)](https://github.com/opensass/select-rs)     | 🔽 A highly customizable select group component for WASM frameworks. |
+| `i18nrs`      | [![GitHub](https://img.shields.io/github/stars/opensass/i18n-rs)](https://github.com/opensass/i18n-rs)         | 🌐 Internationalization (i18n) component for WASM frameworks. |
+| `image-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/image-rs)](https://github.com/opensass/image-rs)        | 🖼️ Image Component for WASM frameworks. |
+| `input-rs`     | [![GitHub](https://img.shields.io/github/stars/opensass/input-rs)](https://github.com/opensass/input-rs)       | 🔤 A highly customizable input component for WASM frameworks. |
+| `radiors`     | [![GitHub](https://img.shields.io/github/stars/opensass/radio-rs)](https://github.com/opensass/radio-rs)       | 🎛️ A highly customizable radio buttons component for WASM frameworks. |
+| `scroll-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/scroll-rs)](https://github.com/opensass/scroll-rs)     | 🖱️ A highly customizable scroll-to-anywhere component for WASM frameworks. |
+| `select-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/select-rs)](https://github.com/opensass/select-rs)     | 🔽 A highly customizable select group component for WASM frameworks. |
 
 And much more coming over time...
 

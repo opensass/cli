@@ -1,4 +1,4 @@
-use crate::utils::fs::{copy_relevant_files, update_cargo_toml, update_lib_rs};
+use crate::utils::fs::{copy_relevant_files, update_cargo_toml, update_pub_file};
 use crates_io_api::SyncClient;
 use flate2::read::GzDecoder;
 use indicatif::{ProgressBar, ProgressStyle};
@@ -52,10 +52,13 @@ pub fn run_add(crate_name: &str, feature: &str) -> anyhow::Result<()> {
     let current_project_src = Path::new("src");
 
     spinner.set_message("📁 Copying relevant source files...");
-    let copied_files = copy_relevant_files(&source_path, current_project_src, feature)?;
+    let _ = copy_relevant_files(&source_path, current_project_src, crate_name, feature)?;
 
     spinner.set_message("🧩 Updating lib.rs...");
-    update_lib_rs(current_project_src.join("lib.rs"), &copied_files)?;
+    update_pub_file(
+        current_project_src.join("lib.rs"),
+        &[crate_name.to_string()],
+    )?;
 
     spinner.set_message("🛠️ Updating Cargo.toml...");
     update_cargo_toml(
