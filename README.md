@@ -97,9 +97,11 @@ Open SASS offers the following components:
 | `i18nrs`      | [![GitHub](https://img.shields.io/github/stars/opensass/i18n-rs)](https://github.com/opensass/i18n-rs)         | 🌐 Internationalization (i18n) component for WASM frameworks. |
 | `image-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/image-rs)](https://github.com/opensass/image-rs)        | 🖼️ Image Component for WASM frameworks. |
 | `input-rs`     | [![GitHub](https://img.shields.io/github/stars/opensass/input-rs)](https://github.com/opensass/input-rs)       | 🔤 A highly customizable input component for WASM frameworks. |
+| `navbar`    | [![GitHub](https://img.shields.io/github/stars/opensass/navbar)](https://github.com/opensass/navbar)     | 🍔 A highly customizable navbar component for WASM frameworks. |
 | `radiors`     | [![GitHub](https://img.shields.io/github/stars/opensass/radio-rs)](https://github.com/opensass/radio-rs)       | 🎛️ A highly customizable radio buttons component for WASM frameworks. |
 | `scroll-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/scroll-rs)](https://github.com/opensass/scroll-rs)     | 🖱️ A highly customizable scroll-to-anywhere component for WASM frameworks. |
 | `select-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/select-rs)](https://github.com/opensass/select-rs)     | 🔽 A highly customizable select group component for WASM frameworks. |
+| `table-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/table-rs)](https://github.com/opensass/table-rs)     | 📋 Table component for WASM frameworks. |
 
 And much more coming over time...
 
