@@ -108,16 +108,16 @@ And much more coming over time...
 ## ⚡ Benchmark
 
 ```sh
-❯ time npx shadcn@latest add accordion
-5.93s user 2.22s system 93% cpu
+❯ time yes | npx shadcn@latest add accordion
+npx shadcn@latest add accordion  8.98s user 4.85s system 90% cpu 15.279 total
 ```
 
 ```sh
 ❯ time os add accordion-rs yew
-0.17s user 0.02s system 6% cpu
+os add accordion-rs yew  0.16s user 0.02s system 5% cpu 0.2 total
 ```
 
-Open SASS CLI is **~50× faster** and uses **~15× less CPU** than `shadcn`. More optimizations on the way 🚀.
+Open SASS CLI is **~56× faster** in user time and uses **~18× less CPU** than `shadcn`. More optimizations on the way 🚀.
 
 ## 🤝 Contributions
 
