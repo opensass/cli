@@ -89,7 +89,7 @@ os add i18nrs lep
 
 Open SASS offers the following components:
 
-| 🧩 Component | 📦 GitHub Repository | 📝 Description |
+| 🧩 Component | 📦 Repository | 📝 Description |
 |------------------|--------------------------|---------------------|
 | `accordion-rs` | [![GitHub](https://img.shields.io/github/stars/opensass/accordion-rs)](https://github.com/opensass/accordion-rs) | ↕️ A highly customizable accordion component for WASM frameworks. |
 | `alert-rs`     | [![GitHub](https://img.shields.io/github/stars/opensass/alert-rs)](https://github.com/opensass/alert-rs)       | ⚠️ A highly customizable alert component for WASM frameworks. |
@@ -101,6 +101,8 @@ Open SASS offers the following components:
 | `radiors`     | [![GitHub](https://img.shields.io/github/stars/opensass/radio-rs)](https://github.com/opensass/radio-rs)       | 🎛️ A highly customizable radio buttons component for WASM frameworks. |
 | `scroll-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/scroll-rs)](https://github.com/opensass/scroll-rs)     | 🖱️ A highly customizable scroll-to-anywhere component for WASM frameworks. |
 | `select-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/select-rs)](https://github.com/opensass/select-rs)     | 🔽 A highly customizable select group component for WASM frameworks. |
+| `sidebar`    | [![GitHub](https://img.shields.io/github/stars/opensass/sidebar)](https://github.com/opensass/sidebar)     | 🗃️ A sidebar component for WASM frameworks. |
+| `skeleton-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/skeleton-rs)](https://github.com/opensass/skeleton-rs)     | 🦴 A skeleton component for WASM frameworks. |
 | `table-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/table-rs)](https://github.com/opensass/table-rs)     | 📋 Table component for WASM frameworks. |
 
 And much more coming over time...
