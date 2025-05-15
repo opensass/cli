@@ -103,7 +103,9 @@ Open SASS offers the following components:
 | `select-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/select-rs)](https://github.com/opensass/select-rs)     | 🔽 A highly customizable select group component for WASM frameworks. |
 | `sidebar`    | [![GitHub](https://img.shields.io/github/stars/opensass/sidebar)](https://github.com/opensass/sidebar)     | 🗃️ A sidebar component for WASM frameworks. |
 | `skeleton-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/skeleton-rs)](https://github.com/opensass/skeleton-rs)     | 🦴 A skeleton component for WASM frameworks. |
+| `slider-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/slider-rs)](https://github.com/opensass/slider-rs)     | 🎚️ A slider component for WASM frameworks. |
 | `table-rs`    | [![GitHub](https://img.shields.io/github/stars/opensass/table-rs)](https://github.com/opensass/table-rs)     | 📋 Table component for WASM frameworks. |
+| `theme`    | [![GitHub](https://img.shields.io/github/stars/opensass/theme)](https://github.com/opensass/theme)     | 🎨 A highly customizable theming system for WASM frameworks. |
 
 And much more coming over time...
 
