@@ -8,7 +8,7 @@ use tar::Archive;
 use tempfile::tempdir;
 use tracing::info;
 
-pub fn run_add(crate_name: &str, feature: &str) -> anyhow::Result<()> {
+pub fn run_add(crate_name: &str, feature: &str, no_cum: bool) -> anyhow::Result<()> {
     let client = SyncClient::new(
         "opensass (via crates_io_api)",
         std::time::Duration::from_millis(1000),
@@ -54,7 +54,13 @@ pub fn run_add(crate_name: &str, feature: &str) -> anyhow::Result<()> {
     let new_crate_name = crate_name.replace('-', "_");
 
     spinner.set_message("📁 Copying relevant source files...");
-    let _ = copy_relevant_files(&source_path, current_project_src, &new_crate_name, feature)?;
+    let _ = copy_relevant_files(
+        &source_path,
+        current_project_src,
+        &new_crate_name,
+        feature,
+        no_cum,
+    )?;
 
     spinner.set_message("🧩 Updating lib.rs...");
     update_pub_file(

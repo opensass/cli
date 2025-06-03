@@ -50,6 +50,9 @@ EXAMPLES:
   Add the `i18nrs` component with `yew` feature:
     os add i18nrs yew
 
+  Add the `i18nrs` component with `yew` feature while stripping all docs:
+    os add -n i18nrs yew
+
 For more information, visit: https://github.com/opensass/cli
 "#
 )]
@@ -71,4 +74,8 @@ pub struct AddArgs {
 
     /// List of features to include
     pub features: String,
+
+    /// Strip all comments (e.g., ///, //, //!...) when copying source files
+    #[arg(short = 'n', long = "no-cum")]
+    pub no_cum: bool,
 }

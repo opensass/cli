@@ -13,7 +13,7 @@ async fn main() -> Result<()> {
     setup_logging()?;
     match args.cmd {
         Some(Command::Add(cmd)) => {
-            task::spawn_blocking(move || run_add(&cmd.name, &cmd.features)).await??;
+            task::spawn_blocking(move || run_add(&cmd.name, &cmd.features, cmd.no_cum)).await??;
         }
         None => {}
     }
