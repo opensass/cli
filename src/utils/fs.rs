@@ -1,6 +1,8 @@
 use anyhow::{Context, Result};
 use std::{
     fs,
+    fs::File,
+    io::{BufRead, BufReader, Write},
     path::{Path, PathBuf},
 };
 use toml_edit::DocumentMut;
@@ -11,6 +13,7 @@ pub fn copy_relevant_files(
     dest_dir: &Path,
     crate_name: &str,
     feature: &str,
+    no_cum: bool,
 ) -> Result<Vec<String>> {
     let mut copied = Vec::new();
 
@@ -26,7 +29,16 @@ pub fn copy_relevant_files(
 
     for entry in WalkDir::new(src_dir).into_iter().flatten() {
         let path = entry.path();
+
         if path.is_file() {
+            let relative_path = path.strip_prefix(src_dir)?;
+            let components: Vec<_> = relative_path.components().collect();
+
+            let is_in_feature_dir = components
+                .first()
+                .map(|c| c.as_os_str() == feature_file)
+                .unwrap_or(false);
+
             let file_name = path.file_name().unwrap().to_string_lossy();
 
             let should_copy = [
@@ -38,19 +50,22 @@ pub fn copy_relevant_files(
             ]
             .contains(&file_name.as_ref());
 
-            if should_copy {
-                let dest_file_name = if file_name == format!("{feature_file}.rs") {
-                    format!("{crate_name}.rs")
-                } else {
-                    file_name.to_string()
-                };
-
+            if should_copy && components.len() == 1 {
+                let dest_file_name = file_name.to_string();
                 let dest_path = crate_dir.join(&dest_file_name);
-
-                fs::copy(path, &dest_path)
-                    .with_context(|| format!("Failed to copy {:?} to {:?}", path, dest_path))?;
-
+                copy_file_cum(path, &dest_path, no_cum, crate_name, feature_file)?;
                 copied.push(dest_file_name.trim_end_matches(".rs").to_string());
+            } else if is_in_feature_dir && components.len() == 2 {
+                copied.retain(|m| m != feature_file);
+                let feature_rs_path = crate_dir.join(format!("{feature_file}.rs"));
+                if feature_rs_path.exists() {
+                    fs::remove_file(&feature_rs_path)
+                        .with_context(|| format!("Failed to delete {:?}", feature_rs_path))?;
+                }
+                let inner_file_name = file_name.to_string();
+                let dest_path = crate_dir.join(&inner_file_name);
+                copy_file_cum(path, &dest_path, no_cum, crate_name, feature_file)?;
+                copied.push(inner_file_name.trim_end_matches(".rs").to_string());
             }
         }
     }
@@ -59,6 +74,54 @@ pub fn copy_relevant_files(
     update_pub_file(crate_file, &copied)?;
 
     Ok(copied)
+}
+
+fn copy_file_cum(
+    src: &Path,
+    dest: &Path,
+    no_cum: bool,
+    crate_name: &str,
+    feature_name: &str,
+) -> Result<()> {
+    if no_cum {
+        let file = File::open(src)?;
+        let reader = BufReader::new(file);
+        let mut dest_file = File::create(dest)?;
+
+        for line in reader.lines() {
+            let mut line = line?;
+            let trimmed = line.trim_start();
+
+            if trimmed.starts_with("//")
+                || trimmed.starts_with("///")
+                || trimmed.starts_with("//!")
+                || trimmed.starts_with("/*!")
+                || trimmed.starts_with("/**")
+            {
+                continue;
+            }
+
+            if trimmed.starts_with("use crate::") {
+                if let Some(stripped) = line.strip_prefix("use crate::") {
+                    if stripped.starts_with(feature_name) {
+                        line = format!(
+                            "use crate::{}::{}",
+                            crate_name,
+                            &stripped[feature_name.len() + 2..]
+                        );
+                    } else {
+                        line = format!("use crate::{}::{}", crate_name, stripped);
+                    }
+                }
+            }
+
+            writeln!(dest_file, "{}", line)?;
+        }
+    } else {
+        fs::copy(src, dest).with_context(|| format!("Failed to copy {:?} to {:?}", src, dest))?;
+    }
+
+    Ok(())
 }
 
 pub fn update_pub_file(lib_path: PathBuf, modules: &[String]) -> Result<()> {
