@@ -24,7 +24,7 @@ clap = { version = "4.5.39", features = ["derive"] }
 crates_io_api = "0.11.0"
 flate2 = "1.1.1"
 indicatif = "0.17.11"
-reqwest = { version = "0.12.19", features = ["blocking", "rustls-tls"] }
+reqwest = { version = "0.12.20", features = ["blocking", "rustls-tls"] }
 tar = "0.4.44"
 tempfile = "3.20.0"
 tokio = { version = "1.45.1", features = ["full"] }
